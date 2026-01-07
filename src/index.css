@@ -1,0 +1,296 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= BASE ================= */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #121212; /* Slightly lighter black for depth */
+  color: white;
+}
+
+/* ================= MAIN LAYOUT ================= */
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  padding: 40px;
+  background: radial-gradient(circle at top left, #2a2a2a, #000); /* Subtle gradient background */
+}
+
+/* ================= FORM SECTION ================= */
+.Formtype {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end; /* Push form close to phone center */
+  align-items: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.form-container form {
+  background-color: #1e1e1e;
+  padding: 45px 35px;
+  border-radius: 20px;
+  border: 1px solid #333;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.form-container form:hover {
+  transform: translateY(-5px); /* Subtle float effect */
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* --- Input Effects --- */
+.form-container form input {
+  width: 100%;
+  padding: 16px;
+  margin: 15px 0;
+  border: none;
+  background-color: #2c2c2c;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-container form input::placeholder {
+  color: #888;
+}
+
+.form-container form input:focus {
+  background-color: #333;
+  border-bottom: 2px solid #007aff; /* iOS Blue accent */
+  padding-left: 20px; /* Text slide effect */
+}
+
+/* --- Button Effects --- */
+.form-container form button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #007aff, #0051a8);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+.form-container form button:hover {
+  box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
+}
+
+.form-container form button:active {
+  transform: scale(0.98); /* Click press effect */
+}
+
+/* ================= PHONE MODEL ================= */
+:root {
+  --phone-width: 300px;
+  --phone-height: 600px;
+  --frame-color: #1a1a1a;
+  --screen-bg: #f2f2f7;
+}
+
+.phone-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  perspective: 1000px;
+}
+
+.phone {
+  position: relative;
+  width: var(--phone-width);
+  height: var(--phone-height);
+  background: var(--frame-color);
+  border-radius: 45px;
+  box-shadow: 
+      0 0 0 2px #333,
+      0 0 0 6px var(--frame-color), 
+      0 30px 60px rgba(0, 0, 0, 0.4); 
+  padding: 12px;
+  box-sizing: border-box;
+  /* margin-right removed for better flex control */
+  transition: transform 0.5s ease;
+}
+
+/* Hovering over phone tilts it slightly */
+.phone:hover {
+  transform: rotateY(-5deg) rotateX(5deg);
+}
+
+/* --- Hardware Buttons (Unchanged) --- */
+.button { position: absolute; background: #2c2c2c; border-radius: 2px; }
+.button-left-1 { top: 100px; left: -8px; width: 4px; height: 25px; }
+.button-left-2 { top: 140px; left: -8px; width: 4px; height: 50px; }
+.button-left-3 { top: 200px; left: -8px; width: 4px; height: 50px; }
+.button-right  { top: 150px; right: -8px; width: 4px; height: 80px; }
+
+/* --- Screen --- */
+.screen {
+  width: 100%;
+  height: 100%;
+  background-color: var(--screen-bg);
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 30px;
+  background-color: var(--frame-color);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 10;
+}
+
+.app-content {
+  padding: 50px 15px 40px 15px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: none;
+}
+.app-content::-webkit-scrollbar { display: none; }
+
+/* ================= CONTACT LIST STYLING (UI Effects) ================= */
+
+/* Animation Keyframes */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.info {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  color: #333;
+  /* The Animation */
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #000;
+}
+
+.No {
+  font-size: 0.85rem;
+  color: #8e8e93;
+}
+
+/* Avatar Circle */
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg, #FF9A9E, #FECFEF);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #555;
+  margin-right: 12px;
+}
+
+/* Wrapper to hold avatar + text */
+.left-side {
+  display: flex;
+  align-items: center;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: #000;
+  border-radius: 10px;
+  opacity: 0.3;
+}
+
+/* ================= RESPONSIVENESS ================= */
+
+/* Tablet and below */
+@media (max-width: 900px) {
+  main {
+    flex-direction: column-reverse; /* Put phone on top or bottom? Let's stack Form on top, phone bottom usually better for UX, but column-reverse puts phone on top */
+    flex-direction: column; 
+    gap: 50px;
+    height: auto;
+    padding: 20px;
+  }
+
+  .Formtype {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .phone-wrapper {
+    width: 100%;
+    justify-content: center;
+    margin-right: 0;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 450px) {
+  .phone {
+    /* Scale down phone slightly if screen is very narrow */
+    transform: scale(0.9); 
+  }
+  .form-container {
+    width: 100%;
+  }
+  .form-container form {
+    padding: 30px 20px;
+  }
+}
